@@ -143,4 +143,22 @@ Tomcat 같은 웹 서버를 내장해서 별도의 웹 서버를 설치하지 �
 9. 스프링으로 전환하기
   ㄴ @Configuration: 설정을 구성한다는 뜻
   ㄴ @Bean: 스프링 컨테이너에 스프링 빈으로 등록
+  ㄴ ApplicationContext를 스프링 컨테이너라 한다.
+
+---
+### Section5
+1. 스프링 컨테이너 생성: 요즘은 애노테이션 기반으로 설정 클래스를 만든다.
+  ㄴ 가.스프링 컨테이너 생성: 구성 정보 활용
+  ㄴ 나. 스프링 빈 등록
+  ㄴ 다. 스프링 빈 의존관계 설정 - 준비 > 완료(설정 정보를 참고해서 의존관계를 주입한다.)
+2. 컨테이너 등록된 모든 빈 조회
+3. 스프링 빈 조회: 상속 관계(부모 타입으로 조회하면, 자식 타입도 함께 조회)
+4. BeanFactory와 ApplicationContext
+  ㄴBeamFactory: 스프링 컨테이너의 최상위 인터페이스, 스프링 빈을 관리하고 조회하는 역할을 담당
+  ㄴ ApplicationContext: BeanFactory 기능을 모두 상속받아서 제공, 빈을 관리하고 조회하는 기능 + 수많은 부가 기능을 제공
+![image](https://github.com/user-attachments/assets/fb19d8d1-06b8-43f7-9bef-78e1696a7cea)
+![image](https://github.com/user-attachments/assets/025910f0-d1a8-4803-9514-53ef9793ebcd)
+
+5. 다양한 설정 형식 지원 - 자바 코드, XML
+6. 스프링 빈 설정 메타 정보 - BeanDefinition
 
