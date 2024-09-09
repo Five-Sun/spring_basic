@@ -171,12 +171,13 @@ ApplicationContext를 스프링 컨테이너라 한다.
 4. BeanFactory와 ApplicationContext
 BeamFactory: 스프링 컨테이너의 최상위 인터페이스, 스프링 빈을 관리하고 조회하는 역할을 담당
 ApplicationContext: BeanFactory 기능을 모두 상속받아서 제공, 빈을 관리하고 조회하는 기능 + 수많은 부가 기능을 제공
+
 ![image](https://github.com/user-attachments/assets/fb19d8d1-06b8-43f7-9bef-78e1696a7cea)
 ![image](https://github.com/user-attachments/assets/025910f0-d1a8-4803-9514-53ef9793ebcd)
 
-5. 다양한 설정 형식 지원 - 자바 코드, XML
+6. 다양한 설정 형식 지원 - 자바 코드, XML
 
-6. 스프링 빈 설정 메타 정보 - BeanDefinition
+7. 스프링 빈 설정 메타 정보 - BeanDefinition
 BeanDefinition이라는 추상화가 존재한다. 스프링 컨테이너는 자바 코드인지, XML인지 몰라도 된다. 오직 BeanDefinition만 알면 된다.
 빈당 각각 하나씩 메타 정보가 생성된다.
 ![image](https://github.com/user-attachments/assets/ff265f99-c910-46da-b873-e414dadc11ee)
@@ -246,6 +247,11 @@ excludeFilters: 컴포넌트 스캔에서 제외할 대상을 지정한다.
 **의존관계 자동 주입은 스프링 컨테이너가 관리하는 스프링 빈이어야 동작한다.**
   
 - 옵션 처리
+주입할 스프링 빈이 없어도 동작해야 할 때가 있는데 @Autowired만 사용하면 required 옵션의 기본값이 true로 되어 있어서 자동 주입 대상이 없으면 오류가 발생한다.
+자동 주입 대상을 옵션 처리하는 방법은 다음과 같다.
+1. @Autowired(required = false): 자동 주입할 대상이 없으면 메서드 자체가 호출 안됨
+2. org.springframework.lang.@Nullable: 자동 주입할 대상이 없으면 null이 입력된다.
+
 - 생성자 주입을 선택해라!
 - 롬복과 최신 트렌드
 - 조회 빈이 2개 이상 - 문제
