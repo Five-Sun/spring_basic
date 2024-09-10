@@ -302,9 +302,21 @@ BeanDefinition이라는 추상화가 존재한다. 스프링 컨테이너는 자
   - 스프링은 크게 아래서 학습할 3가지 방법으로 빈 생명주기 콜백을 지원한다.
   
 - 인터페이스 initializingBean, DisposalbleBean
-
+  - InitializingBean 은 afterPropertiesSet() 메서드로 초기화를 지원한다.
+  - DisposableBean 은 destroy() 메서드로 소멸을 지원한다.
+    
 - 빈 등록 초기화, 소멸 메서드 지정
-
+  - @Bean(initMethod = "init", destroyMethod = "close") 다음과 같이 사용한다.
+  - 메서드 이름을 자유롭게 줄 수 있꼬 스프링 빈이 스프링 코드에 의존하지 않는다. 코드를 고칠 수 없는 외부라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.
+  - destroyMethod 는 기본값이(inferred)(추론)으로 등록되어 있다.
+  - 이 추론 기능은 close, shutdown 라는 이름의 메서드를 자동으로 호출해준다.
+ 
 - 애노테이션 @PostConstruct, @PreDestory
+  - 두 애노테이션을 사용하면 가장 편리하게 초기화와 종료를 실행할 수 있다.
+  - 최신 스프링에서 가장 권장하는 방법이다.
+  - 자바 표준이므로 스프링이 아닌 다른 컨테이너에서도 동작한다.
+  - 유일한 단점은 외부 라이브러리에는 적용하지 못한다는 것이다. 외부 라이브러리를 초기화, 종료해야 하면 @Bean 기능을 사용하자.
+ 
+---
 
 
