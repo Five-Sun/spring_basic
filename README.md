@@ -356,12 +356,14 @@ BeanDefinition이라는 추상화가 존재한다. 스프링 컨테이너는 자
   4. websocket: 웹 소켓과 동일한 생명주기를 가지는 스코프
   
 - request 스코프 예제 만들기
-
+  -스프링 애플리케이션을 실행 시키면 오류가 발생한다. 스프링 애플리케이션을 실행하는 시점에 싱글톤 빈은 생성해서 주입이 가능하지만, request 스코프 빈은 아직 생성되지 않는다. 이 빈은 실제 고객의 요청이 와야 생성할 수 있다!
   
 - 스코프와 Provider
 
   
 - 스코프와 프록시
+  -@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS) 사용시, MyLogger의 가짜 프록시 클래스를 만들어두고 HTTP request와 상관 없이 가짜 프록시 클래스를 다른 빈에 미리 주입해 둘 수 있다
+  -사실 Provider를 사용하든, 프록시를 사용하든 핵심 아이디어는 진짜 객체 조회를 꼭 필요한 시점까지 지연처리 한다는 점이다.
 
 
 
